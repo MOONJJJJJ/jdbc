@@ -376,5 +376,24 @@ RedirectAttributes : 사용시 URL 인코딩도 해주고, pathVariable , 쿼리
 수정폼GET{모델.객체 / 리턴.수정뷰} 
 수정처리POST{리포지토리.업뎃 / 리턴.리다이렉트} 
 
+JDBC : DB마다 다른 연결방식 통일한 인터페이스
+java.sql.Connection - 연결
+java.sql.Statement - SQL을 담은 내용
+java.sql.ResultSet - SQL 요청 응답
+
+불편한점 : JDBC 반복코드가 생김 (조회/수정/삭제시마다 반복코드), SQL은 여전히 입력해야함
+
+JPA : DB마다 다른 SQL 사용법 문제 해결
+SQL Mapper : JDBC의 반복 코드 제거, SQL 응답 결과를 객체로 편리하게 변환, SQL은 여전히 직접 입력해야함. 대표 기술: 스프링 JdbcTemplate, MyBatis
+ORM : SQL 직접 작성 안해도 됨. 기술 난이도 높아서 실무에서 쓰려면 깊이 학습 필요. 대표 기술: JPA, 하이버네이트, 이클립스링크
+
 
 테스트 시 예외 검증 : assertThatThrownBy 사용
+
+
+---
+
+커넥션 풀 : 커넥션 매번 새로생성시 느리고 비효율, 미리 생성해둔 커넥션풀을 DB커넥션시 꺼내쓰고 종료하지않고 반환방식
+실무에선 기본으로 사용하며, 커넥션 풀 오픈소스 중 hikariCP를 주로 쓴다
+DataSource : 커넥션 획득방법 추상화 하는 인터페이스 (드라이버매니저 쓰다가 커넥션풀 쓰도록 변경시 코드 변경해야함. 그래서 추상화)
+DataSource 핵심기능 : 커넥션 조회
