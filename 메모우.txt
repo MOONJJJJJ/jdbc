@@ -376,3 +376,5 @@ RedirectAttributes : 사용시 URL 인코딩도 해주고, pathVariable , 쿼리
 수정폼GET{모델.객체 / 리턴.수정뷰} 
 수정처리POST{리포지토리.업뎃 / 리턴.리다이렉트} 
 
+
+테스트 시 예외 검증 : assertThatThrownBy 사용
