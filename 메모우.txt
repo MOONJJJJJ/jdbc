@@ -503,3 +503,10 @@ Exception 을 상속받으면 체크 예외가 된다.
 SQLExceptionTranslator exTranslator = new SQLErrorCodeSQLExceptionTranslator(dataSource);
 DataAccessException resultEx  = exTranslator.translate("설명",sql,e);
 ==> 리포지토리에선 바로위 구문대신 throw exTranlator.translate("설명",sql,e); 이렇게해서 던지면댐.
+
+JDBC반복코드 제거 : 템플릿 콜백 패턴 (JdbcTemplate 사용)
+JdbcTemplate 은 JDBC로 개발할 때 발생하는 반복을 대부분 해결해준다. 그 뿐만 아니라 지금까지 학습했던, 트랜
+잭션을 위한 커넥션 동기화는 물론이고, 예외 발생시 스프링 예외 변환기도 자동으로 실행해준다
+
+생성/수정/삭제 -> template.update로 다해결
+조회 -> template.queryForObject(sql, memberRowMapper(), 조회값);와 변하는 부분(memberRowMapper())에 대한 구현만 하면 해결
